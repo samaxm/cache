@@ -2,6 +2,8 @@ package online.decentworld.cache.redis;
 
 import io.codis.jodis.JedisResourcePool;
 import io.codis.jodis.RoundRobinJedisPool;
+import online.decentworld.tools.Environment;
+import online.decentworld.tools.EnvironmentCofing;
 import redis.clients.jedis.*;
 
 import java.util.ArrayList;
@@ -21,7 +23,7 @@ public class RedisClient {
     }
 
     public static Jedis getJedis(){
-    	if("LOCAL".equals(ENVIRONMENT)){
+    	if(EnvironmentCofing.environment== Environment.LOCAL){
             return jedisPool.getResource();
         }else {
             return jodisPool.getResource();
@@ -46,7 +48,7 @@ public class RedisClient {
         config.setMaxIdle(100); 
         config.setMaxWaitMillis(5000); 
         config.setTestOnBorrow(true);
-        if(ENVIRONMENT.equals("LOCAL")){
+        if(EnvironmentCofing.environment== Environment.LOCAL){
             jedisPool=new JedisPool(config,"112.74.13.117",6379,6000,"decentworld2015");
         }else{
             jodisPool=RoundRobinJedisPool.create().curatorClient(CODIS_ZK_CONNECTSTR, 30000).zkProxyDir(CODIS_PROXY_NAMESPACE).poolConfig(config).build();

@@ -18,6 +18,6 @@ public class CacheTest {
     private RedisIDUtil idUtil;
     @Test
     public void test(){
-//        System.out.println(idUtil.getID());
+        System.out.println(idUtil.getID(null));
     }
 }

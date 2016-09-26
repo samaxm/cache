@@ -13,7 +13,6 @@ import java.util.Properties;
 public class RedisConfig {
     public static String CODIS_ZK_CONNECTSTR;
     public static String CODIS_PROXY_NAMESPACE;
-    public static String ENVIRONMENT;
     public static String CONFIG_FILE="codis_config.properties";
     private static Logger logger= LoggerFactory.getLogger(RedisConfig.class);
 

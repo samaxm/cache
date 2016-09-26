@@ -27,7 +27,7 @@ public class RedisIDUtil extends RedisTemplate {
     }
 
     public long getID(Jedis outjedis){
-        if(outjedis!=null){
+            if(outjedis==null){
             ReturnResult result= cache((Jedis jedis)->{
                 long id=jedis.incr(CacheKey.CHAT_ID);
                 if(id==1){
