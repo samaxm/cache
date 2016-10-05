@@ -39,7 +39,17 @@ public class CacheKey {
 	/**
 	 * READ & EXPIRE MESSAGE WAITING STORE SET
 	 */
-	public static String MESSSAGE_STORE_SET="message:store";
-
-
+	public static String MESSSAGE_STORE_SET="MESSAGE:STORE";
+	/**
+	 * USER SESSION INFO
+	 */
+	public static String SESSION="SESSION";
+	/**
+	 * CURRENT ONLINE NUMBER
+	 */
+	public static String ONLINE_NUM="ONLINE";
+	/**
+	 * HISTORY MAX ONLINE NUMBER
+	 */
+	public static String MAX_ONLINE="MAX_ONLINE";
 }

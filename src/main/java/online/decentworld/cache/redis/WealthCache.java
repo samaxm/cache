@@ -2,11 +2,12 @@ package online.decentworld.cache.redis;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 import redis.clients.jedis.Jedis;
 
 import static online.decentworld.cache.redis.CacheKey.WEALTH;
 
-
+@Component
 public class WealthCache extends RedisTemplate {
 
 	private static Logger logger=LoggerFactory.getLogger(WealthCache.class);
