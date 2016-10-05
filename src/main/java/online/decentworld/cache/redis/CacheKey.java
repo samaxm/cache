@@ -36,7 +36,10 @@ public class CacheKey {
 	 * CHAT ID
 	 */
 	public static String CHAT_ID="ID:CHAT";
-	
-	
+	/**
+	 * READ & EXPIRE MESSAGE WAITING STORE SET
+	 */
+	public static String MESSSAGE_STORE_SET="message:store";
+
 
 }

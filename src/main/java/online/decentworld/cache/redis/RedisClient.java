@@ -49,6 +49,7 @@ public class RedisClient {
         config.setMaxWaitMillis(5000); 
         config.setTestOnBorrow(true);
         if(EnvironmentCofing.environment== Environment.LOCAL){
+
             jedisPool=new JedisPool(config,"112.74.13.117",6379,6000,"decentworld2015");
         }else{
             jodisPool=RoundRobinJedisPool.create().curatorClient(CODIS_ZK_CONNECTSTR, 30000).zkProxyDir(CODIS_PROXY_NAMESPACE).poolConfig(config).build();
