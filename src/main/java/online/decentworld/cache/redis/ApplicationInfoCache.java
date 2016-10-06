@@ -3,6 +3,7 @@ package online.decentworld.cache.redis;
 import org.springframework.stereotype.Component;
 import redis.clients.jedis.Jedis;
 
+import javax.annotation.PostConstruct;
 import java.util.Set;
 
 /**
@@ -15,12 +16,22 @@ public class ApplicationInfoCache extends RedisTemplate {
     private long MAX_IDLE_TIME=10*60*1000;
 
     public ApplicationInfoCache(){
-        cache((Jedis jedis)->{
-            String max=jedis.get(CacheKey.MAX_ONLINE);
-            if(max!=null){
-                MAX_ONLINE=Long.valueOf(max);
-            }else{
-                jedis.set(CacheKey.MAX_ONLINE,"0");
+
+    }
+
+    @PostConstruct
+    public void init(){
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        cache((Jedis jedis) -> {
+            String max = jedis.get(CacheKey.MAX_ONLINE);
+            if (max != null) {
+                MAX_ONLINE = Long.valueOf(max);
+            } else {
+                jedis.set(CacheKey.MAX_ONLINE, "0");
             }
             return ReturnResult.SUCCESS;
         });
@@ -44,7 +55,16 @@ public class ApplicationInfoCache extends RedisTemplate {
         }
     }
 
-
+    public long getOnlineNum(){
+        ReturnResult result=cache((Jedis jeids) -> {
+            return ReturnResult.result(jeids.zcard(CacheKey.ONLINE_NUM));
+        });
+        if(result.isSuccess()){
+            return (long) result.getResult();
+        }else{
+            return 0;
+        }
+    }
     public long checkOnline(){
         return (long)cache((Jedis jedis)->{
             Set<String> expireIDs=jedis.zrangeByScore(CacheKey.ONLINE_NUM, 0, System.currentTimeMillis() - MAX_IDLE_TIME);

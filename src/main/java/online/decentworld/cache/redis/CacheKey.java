@@ -52,4 +52,6 @@ public class CacheKey {
 	 * HISTORY MAX ONLINE NUMBER
 	 */
 	public static String MAX_ONLINE="MAX_ONLINE";
+
+	public static String FAIL_STROE_MSG="FAIL_SOTRE_MSG";
 }

@@ -64,6 +64,7 @@ public class SessionCache extends RedisTemplate {
                 });
             }else if(ids.size()==1){
                 String info=jedis.hget(CacheKey.SESSION,ids.iterator().next());
+                if(info!=null)
                 list.add(JSON.parseObject(info,BaseDisplayUserInfo.class));
             }
             return ReturnResult.result(list);
