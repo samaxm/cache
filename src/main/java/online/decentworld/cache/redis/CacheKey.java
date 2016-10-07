@@ -52,6 +52,16 @@ public class CacheKey {
 	 * HISTORY MAX ONLINE NUMBER
 	 */
 	public static String MAX_ONLINE="MAX_ONLINE";
-
+	/**
+	 * FAIL STORE MESSAGE LIST
+	 */
 	public static String FAIL_STROE_MSG="FAIL_SOTRE_MSG";
+	/**
+	 * USER AES KEY, EXPIRE 3 DAYS
+	 */
+	public static String AESKey(String dwID){
+		return AES+SEPARATOR+dwID;
+	}
+
+
 }
