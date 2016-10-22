@@ -77,4 +77,16 @@ public class SessionCache extends RedisTemplate {
         }
     }
 
+
+    public boolean cacheUserConnDomain(String dwID,String domain){
+        ReturnResult result=cache((Jedis jedis)->{
+            Long set=jedis.hsetnx(CacheKey.CONN_DOMAIN,dwID,domain);
+            if(set==0){
+                return ReturnResult.result(false);
+            }else{
+                return ReturnResult.result(true);
+            }
+        });
+        return (boolean) result.getResult();
+    }
 }

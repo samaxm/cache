@@ -31,7 +31,7 @@ public class CacheKey {
 	/**
 	 * CHAT
 	 */
-	public static String CHAT="CHAT";
+	public static String MESSAGE="MESSAGE";
 	/**
 	 * CHAT ID
 	 */
@@ -56,6 +56,8 @@ public class CacheKey {
 	 * FAIL STORE MESSAGE LIST
 	 */
 	public static String FAIL_STROE_MSG="FAIL_SOTRE_MSG";
+
+	public static String CONN_DOMAIN="CONN_DOMAIN";
 	/**
 	 * USER AES KEY, EXPIRE 3 DAYS
 	 */
