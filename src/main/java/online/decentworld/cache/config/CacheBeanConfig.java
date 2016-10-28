@@ -29,25 +29,39 @@ public class CacheBeanConfig extends CachingConfigurerSupport {
 
     private static Logger logger= LoggerFactory.getLogger(CacheBeanConfig.class);
 
-    private CacheManager redisCache=new SpringRedisCacheManager();
 
-    private CacheManager localCache=new ConcurrentMapCacheManager();
+    @Bean
+    public CacheManager redisCacheManager() {
+        logger.debug("[INIT_REDIS_CACHE]");
+        return new SpringRedisCacheManager();
+    }
     @Bean
     public CacheManager cacheManager() {
-        return null;
+        logger.debug("[INIT_LOCAL_CACHE]");
+        return new ConcurrentMapCacheManager();
     }
+
     @Bean(name = "default_cache_resolver")
     public CacheResolver getCacheResolver(){
+        logger.debug("[GET_RESOLVER]");
+        CacheManager redisCacheManager=new SpringRedisCacheManager();
+        CacheManager localCacheManager=new ConcurrentMapCacheManager();
         return new CacheResolver() {
             @Override
             public Collection<? extends Cache> resolveCaches(CacheOperationInvocationContext<?> context) {
                 String cacheName=context.getOperation().getCacheNames().iterator().next();
+                logger.debug("[RESOLVE_CACHE] cacheName#"+cacheName);
                 List<Cache> caches = new ArrayList<Cache>();
                 if(cacheName.startsWith("redis")){
-                    caches.add(redisCache.getCache(cacheName));
-                    return caches;
+                    String name=cacheName.split("_")[1];
+                    if(name!=null){
+                        caches.add(redisCacheManager.getCache(name));
+                        return caches;
+                    }else{
+                        return null;
+                    }
                 }else if(cacheName.startsWith("local")){
-                    caches.add(localCache.getCache(cacheName));
+                    caches.add(localCacheManager.getCache(cacheName));
                     return caches;
                 }else{
                     return null;

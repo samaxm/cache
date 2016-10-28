@@ -56,6 +56,11 @@ public class CacheKey {
 	 * FAIL STORE MESSAGE LIST
 	 */
 	public static String FAIL_STROE_MSG="FAIL_SOTRE_MSG";
+	/**
+	 * GET OFFLINE PUSH CHANNEL FOR IPHONE APNS ID
+	 */
+	public static String OFFLINE_PUSH_CHANNEL="OFFLINE_PUSH_CHANNEL";
+
 
 	public static String CONN_DOMAIN="CONN_DOMAIN";
 	/**

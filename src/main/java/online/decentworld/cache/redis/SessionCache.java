@@ -89,4 +89,33 @@ public class SessionCache extends RedisTemplate {
         });
         return (boolean) result.getResult();
     }
+
+    public boolean cacheOfflinePushChannel(String dwID,String channel){
+        ReturnResult result=cache((Jedis jedis)->{
+            jedis.hset(CacheKey.OFFLINE_PUSH_CHANNEL,dwID,channel);
+            return ReturnResult.SUCCESS;
+        });
+        if(!result.isSuccess()){
+            return false;
+        }else{
+            return true;
+        }
+    }
+
+    public String getOfflinePushChannle(String dwID){
+        ReturnResult result=cache((Jedis jedis)->{
+            return ReturnResult.result(jedis.hget(CacheKey.OFFLINE_PUSH_CHANNEL,dwID));
+        });
+        return (String) result.getResult();
+    }
+
+
+
+    public String getUserConnDomain(String dwID){
+        ReturnResult result=cache((Jedis jedis)->{
+            String domain=jedis.hget(CacheKey.CONN_DOMAIN,dwID);
+            return ReturnResult.result(domain);
+        });
+        return (String) result.getResult();
+    }
 }
