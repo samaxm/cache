@@ -77,8 +77,30 @@ public class ApplicationInfoCache extends RedisTemplate {
             long online=jedis.zcard(CacheKey.ONLINE_NUM);
             return ReturnResult.result(online);
         }).getResult();
-
     }
+
+    public Integer getIphoneStatus(){
+        ReturnResult result=cache(jedis->{
+            String key=jedis.get(CacheKey.IPHONE_ONLINE_STATUS_VERSION);
+            return ReturnResult.result(key);
+        });
+        return Integer.parseInt((String) result.getResult());
+    }
+
+
+    public boolean setIphoneStatus(Integer version){
+        ReturnResult result=cache(jedis->{
+            String key=jedis.set(CacheKey.IPHONE_ONLINE_STATUS_VERSION,String.valueOf(version));
+            return ReturnResult.result(key);
+        });
+        if(result.isSuccess()){
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+
 
     public long getMAX_ONLINE() {
         return MAX_ONLINE;

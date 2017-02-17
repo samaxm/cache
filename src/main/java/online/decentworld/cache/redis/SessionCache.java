@@ -118,4 +118,27 @@ public class SessionCache extends RedisTemplate {
         });
         return (String) result.getResult();
     }
+
+    public boolean setUserWorth(String dwID,String worth){
+        ReturnResult result=cache((Jedis jedis)->{
+            jedis.hset(CacheKey.WORTH,dwID,worth);
+            return ReturnResult.SUCCESS;
+        });
+        if(!result.isSuccess()){
+            return false;
+        }else{
+            return true;
+        }
+    }
+
+    public Integer getUserWorth(String dwID){
+        ReturnResult returnResult=cache(jedis->{
+            return ReturnResult.result(jedis.hget(CacheKey.WORTH,dwID));
+        });
+        if(returnResult.isSuccess()){
+            return Integer.valueOf((String)returnResult.getResult());
+        }else {
+            return null;
+        }
+    }
 }

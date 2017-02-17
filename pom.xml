@@ -128,14 +128,6 @@
             <version>0.3.1</version>
         </dependency>
 
-        <!-- protobuf -->
-        <dependency>
-            <groupId>com.google.protobuf</groupId>
-            <artifactId>protobuf-java</artifactId>
-            <version>3.0.0</version>
-        </dependency>
-
-
         <dependency>
             <groupId>online.decentworld</groupId>
             <artifactId>rpc</artifactId>

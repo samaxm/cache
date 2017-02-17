@@ -24,6 +24,10 @@ public class CacheKey {
 	 */
 	public static String WEALTH="WEALTH";
 
+	public static String WORTH="WORTH";
+
+
+
 	/**
 	 * 用户AES的key缓存，hest,field为用户ID,value为用户key
 	 */
@@ -61,6 +65,12 @@ public class CacheKey {
 	 */
 	public static String OFFLINE_PUSH_CHANNEL="OFFLINE_PUSH_CHANNEL";
 
+
+	/**
+	 * iphone online status
+	 */
+	public static String IPHONE_ONLINE_STATUS="IPHONE:STATUS";
+	public static String IPHONE_ONLINE_STATUS_VERSION="IPHONE:STATUS";
 
 	public static String CONN_DOMAIN="CONN_DOMAIN";
 	/**
